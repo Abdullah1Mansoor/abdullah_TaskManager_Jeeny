@@ -130,17 +130,10 @@ function Home() {
     return () => clearInterval(intervalId);
   }, [tasks]);
 
-  const addTask = async (task) => {
-    const result = await createTask(task);
-    const newTask = {
-      ...task,
-      id: result.id,
-      isCompleted: false,
-      deadlineDate: task.deadline ? new Date(task.deadline) : null,
-      notified: false,
-    };
-    setTasks((prev) => [newTask, ...prev]);
-  };
+ const addTask = async (task) => {
+  await createTask(task); // Let the socket event handle UI update
+};
+
 
   const handleUpdate = async (updatedTask) => {
     await editTask(updatedTask.id, updatedTask);
