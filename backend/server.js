@@ -12,7 +12,7 @@ const PORT = 3001;
 const server = http.createServer(app);
 
 const io = new Server(server, {
-  cors: { origin: '*' },  
+  cors: { origin: 'http://localhost:5173/login' },  
 });
 
 app.use(cors());
